@@ -1,0 +1,53 @@
+---
+---
+<nav class="container nav-bar animate-fade-in">
+    <div class="logo">
+        DiveHub
+    </div>
+    <div class="nav-links">
+        <a href="/">Features</a>
+        <a href="/">Pricing</a>
+        <a href="/privacy">Privacy</a>
+    </div>
+</nav>
+
+<style>
+    /* Nav */
+    .nav-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(to right, #ffffff, #9ca3af);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .nav-links a {
+        color: var(--color-text-muted);
+        transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+        color: white;
+    }
+    
+    @media (max-width: 768px) {
+        .nav-links {
+            display: none; 
+        }
+    }
+</style>
