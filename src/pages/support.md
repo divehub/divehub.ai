@@ -5,16 +5,17 @@ title: "Support - DiveHub"
 
 # Support
 
-We’re here to help you get the most from DiveHub. For any questions, feedback, or issues, please reach out to **info@divehub.ai**.
+We’re here to help you get the most from DiveHub. For any questions, feedback, or issues, please reach out to **info [at] divehub.ai**.
 
 ## How to reach us
 
-- Email: [info@divehub.ai](mailto:info@divehub.ai)
+- Email: [info [at] divehub.ai](mailto:info@divehub.ai)
 - Please include your device, OS version, and a short description of the issue so we can assist quickly.
+- If an issue involves a dive plan, include a brief description of the plan and a screenshot showing the problem so we can reproduce it.
 
 ## Response times
 
-We aim to respond to all inquiries within **2 business days**. Urgent safety-related questions are prioritized immediately.
+We respond as quickly as possible. Urgent safety-related questions are prioritized immediately.
 
 ## Additional resources
 
