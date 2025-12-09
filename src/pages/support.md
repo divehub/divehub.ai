@@ -5,11 +5,11 @@ title: "Support - DiveHub"
 
 # Support
 
-We’re here to help you get the most from DiveHub. For any questions, feedback, or issues, please reach out to **info [at] divehub.ai**.
+We’re here to help you get the most from DiveHub. For any questions, feedback, or issues, please reach out to **info [at] divehub.ai** (link opens a message to `info@divehub.ai`).
 
 ## How to reach us
 
-- Email: [info [at] divehub.ai](mailto:info@divehub.ai)
+- Email: [info [at] divehub.ai](mailto:info@divehub.ai) (opens mail to `info@divehub.ai`)
 - Please include your device, OS version, and a short description of the issue so we can assist quickly.
 - If an issue involves a dive plan, include a brief description of the plan and a screenshot showing the problem so we can reproduce it.
 
