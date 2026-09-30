@@ -1,25 +1,33 @@
 ---
 layout: ../layouts/MarkdownLayout.astro
-title: "Support - DiveHub"
+title: "Support — DiveHub"
+description: "Contact DiveHub for app questions, bug reports, and feedback. Learn what to include when reporting an issue."
 ---
 
 # Support
 
-We’re here to help you get the most from DiveHub. For any questions, feedback, or issues, please reach out to `info [at] divehub.ai`.
+Have a question, found a bug, or have an idea for DiveHub? We’d like to hear from you.
 
-## How to reach us
+## Contact us
 
-- Email: `info [at] divehub.ai]`
-- Please include your device, OS version, and a short description of the issue so we can assist quickly.
-- If an issue involves a dive plan, include a brief description of the plan and a screenshot showing the problem so we can reproduce it.
+Email [info@divehub.ai](mailto:info@divehub.ai) for app questions, issue reports, and feedback.
 
-## Response times
+## Report an issue
 
-We respond as quickly as possible. Urgent safety-related questions are prioritized immediately.
+A few details help us understand and reproduce a problem:
 
-## Additional resources
+- Your device model and operating system version.
+- The DiveHub app version.
+- The steps that lead to the issue.
+- What you expected to happen and what actually happened.
+- Any error messages or relevant screenshots. Remove personal information before sharing them.
 
-- Try restarting the app and ensuring you’re on the latest version.
-- If problems continue, send any error messages or screenshots along with your email so we can investigate.
-- Check your internet connection if sync features are failing.
-- Make sure your device has enough storage and background data permissions enabled for DiveHub.
+## Before you write
+
+Check that you’re using the latest version from the [App Store](https://apps.apple.com/us/app/divehub-multi-dive-tool/id6756101582), then try restarting the app. If the issue continues, include the details above in your email.
+
+## Intended use
+
+DiveHub is an educational tool for exploring decompression theory. **It is not for real dive planning.** The app does not include all the features required for safe, real-world dive planning. See the [App Store listing](https://apps.apple.com/us/app/divehub-multi-dive-tool/id6756101582) for the full educational-use notice and current app requirements.
+
+For information about data handling, read our [Privacy Policy](/privacy/).

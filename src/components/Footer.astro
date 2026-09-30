@@ -1,23 +1,138 @@
 ---
+import StoreCTA from './StoreCTA.astro';
 ---
+
 <footer class="site-footer">
-    <div class="container footer-content">
-        <p>&copy; {new Date().getFullYear()} DiveHub.ai. All rights reserved.</p>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="DiveHub home">
+          <img src="/images/app-icon.webp" alt="" width="36" height="36" loading="lazy" />
+          <span>DiveHub</span>
+        </a>
+        <p>Explore the shape of a dive.</p>
+      </div>
+      <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/support/">Support</a>
+        <a href="/privacy/">Privacy policy</a>
+        <a href="https://apps.apple.com/us/app/divehub-multi-dive-tool/id6756101582">App Store <span aria-hidden="true">↗</span></a>
+      </nav>
+      <StoreCTA compact />
     </div>
+    <div class="footer-bottom">
+      <p class="education-note">For education and simulation only. Not intended for planning or executing real dives.</p>
+      <p class="copyright">&copy; {new Date().getFullYear()} DiveHub. All rights reserved.</p>
+    </div>
+  </div>
 </footer>
 
 <style>
-    /* Footer */
-    .site-footer {
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-        margin-top: 5rem;
+  .site-footer {
+    padding-block: 52px 28px;
+    border-top: 1px solid var(--color-border);
+    background: #09171e;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: start;
+    gap: 48px;
+    padding-bottom: 44px;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .brand img {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #ffffff1f;
+    border-radius: 9px;
+  }
+
+  .footer-brand > p {
+    margin-top: 16px;
+    color: var(--color-text-muted);
+    font-size: 14px;
+  }
+
+  .footer-links {
+    display: grid;
+    gap: 6px;
+  }
+
+  .footer-links a {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 30px;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    transition: color 160ms ease;
+  }
+
+  .footer-links a:hover {
+    color: var(--color-text);
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .education-note {
+    max-width: 580px;
+  }
+
+  .copyright {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 800px) {
+    .footer-top {
+      grid-template-columns: 1fr auto;
+      gap: 28px;
     }
 
-    .footer-content {
-        text-align: center;
-        color: var(--color-text-muted);
-        font-size: 0.875rem;
+    .footer-top :global(.store-cta) {
+      grid-column: 1 / -1;
     }
+
+    .footer-bottom {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 22px;
+    }
+
+    .footer-links a {
+      min-height: 44px;
+    }
+  }
 </style>

@@ -3,128 +3,252 @@ import Layout from './Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-const { frontmatter } = Astro.props;
+interface Props {
+  frontmatter: { title?: string; description?: string };
+  headings?: { depth: number; slug: string; text: string }[];
+}
+
+const { frontmatter, headings = [] } = Astro.props;
+const pageName = (frontmatter.title || 'Resources').replace(/\s*[-—]\s*DiveHub$/, '');
+const sections = headings.filter((heading) => heading.depth === 2);
+const description = frontmatter.description || (pageName === 'Privacy Policy'
+  ? 'Read the DiveHub privacy policy and learn how the app handles your data.'
+  : 'Contact DiveHub support for questions, feedback, or help with the app.');
 ---
 
-<Layout title={frontmatter.title || "DiveHub"}>
-    <main class="main-wrapper">
-         <!-- Background Gradients (Reused) -->
-         <div class="bg-gradient-wrapper">
-            <div class="bg-gradient-orb orb-1"></div>
-            <div class="bg-gradient-orb orb-2"></div>
-            <div class="bg-overlay"></div>
-        </div>
-
-        <Header />
-
-        <div class="container content-wrapper animate-fade-in">
-            <div class="glass-card page-card">
-                <slot />
+<Layout title={frontmatter.title || 'DiveHub resources'} description={description}>
+  <Header />
+  <main id="main-content" class="resource-main" tabindex="-1">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{pageName}</span>
+      </nav>
+      <div class="resource-grid">
+        <article class="prose">
+          <slot />
+        </article>
+        <aside class="resource-aside">
+          <div class="resource-sidebar">
+            {sections.length > 0 && (
+              <nav class="page-index" aria-label="On this page">
+                <p class="eyebrow">On this page</p>
+                <ul>
+                  {sections.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+                </ul>
+              </nav>
+            )}
+            <div class="resource-help">
+              <p>Questions about DiveHub?</p>
+              <a class="text-link" href="/support/">Visit support <span aria-hidden="true">↗</span></a>
             </div>
-        </div>
-
-        <Footer />
-    </main>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <Footer />
 </Layout>
 
 <style>
-    .main-wrapper {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
+  .resource-main {
+    min-height: 65vh;
+    padding-block: 36px 96px;
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 44px;
+    color: var(--color-text-muted);
+    font-size: 12px;
+  }
+
+  .breadcrumb a {
+    padding-block: 8px;
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 4px;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .resource-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 220px;
+    align-items: start;
+    gap: 80px;
+  }
+
+  .prose {
+    max-width: 760px;
+    min-width: 0;
+  }
+
+  .resource-aside {
+    position: sticky;
+    top: 124px;
+  }
+
+  .resource-sidebar {
+    padding-top: 14px;
+  }
+
+  .page-index ul {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .page-index a {
+    display: block;
+    color: var(--color-text-muted);
+    font-size: 13px;
+    line-height: 1.65;
+    transition: color 160ms ease;
+  }
+
+  .page-index a:hover {
+    color: var(--color-text);
+  }
+
+  .resource-help {
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .resource-help > p {
+    margin-bottom: 12px;
+    color: var(--color-text-muted);
+    font-size: 12px;
+  }
+
+  :global(.prose h1) {
+    margin-bottom: 36px;
+    font-size: clamp(40px, 5vw, 64px);
+  }
+
+  :global(.prose h2) {
+    margin-block: 44px 18px;
+    font-size: clamp(23px, 2.5vw, 28px);
+    letter-spacing: -0.025em;
+    scroll-margin-top: 112px;
+  }
+
+  :global(.prose h3) {
+    margin-block: 30px 16px;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  :global(.prose p),
+  :global(.prose ul),
+  :global(.prose ol) {
+    margin-bottom: 20px;
+    color: var(--color-text-muted);
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  :global(.prose ul),
+  :global(.prose ol) {
+    padding-left: 22px;
+  }
+
+  :global(.prose li) {
+    padding-left: 5px;
+    margin-block: 9px;
+  }
+
+  :global(.prose li::marker) {
+    color: var(--color-accent);
+  }
+
+  :global(.prose strong) {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  :global(.prose a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+  }
+
+  :global(.prose a:hover) {
+    color: var(--color-primary-hover);
+  }
+
+  :global(.prose code) {
+    padding: 3px 6px;
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    overflow-wrap: anywhere;
+  }
+
+  :global(.prose blockquote) {
+    margin-block: 28px;
+    padding: 4px 0 4px 22px;
+    border-left: 2px solid var(--color-accent);
+  }
+
+  :global(.prose blockquote p:last-child) {
+    margin-bottom: 0;
+  }
+
+  :global(.prose hr) {
+    margin-block: 36px;
+    border: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 900px) {
+    .resource-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 36px;
     }
 
-     /* Background Gradients */
-     .bg-gradient-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -10;
-        overflow: hidden;
+    .resource-aside {
+      position: static;
     }
 
-    .bg-gradient-orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(120px);
+    .resource-sidebar {
+      padding-top: 0;
     }
 
-    .orb-1 {
-        top: -10%;
-        left: -10%;
-        width: 50vw;
-        height: 50vw;
-        background: rgba(37, 99, 235, 0.2); 
+    .page-index {
+      display: none;
     }
 
-    .orb-2 {
-        bottom: -10%;
-        right: -10%;
-        width: 50vw;
-        height: 50vw;
-        background: rgba(6, 182, 212, 0.1); 
+    .resource-help {
+      margin-top: 0;
     }
-    
-    .bg-overlay {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(circle at center, transparent 0%, var(--color-bg) 100%);
+  }
+
+  @media (max-width: 600px) {
+    .resource-main {
+      padding-block: 24px 64px;
     }
 
-    .content-wrapper {
-        flex: 1;
-        padding-top: 2rem;
-        padding-bottom: 2rem;
-        max-width: 800px;
+    .breadcrumb {
+      margin-bottom: 28px;
     }
 
-    .page-card {
-        padding: 2rem; /* Reduced padding for mobile, larger in media query */
+    :global(.prose h1) {
+      margin-bottom: 28px;
     }
-
-    @media (min-width: 768px) {
-        .page-card {
-            padding: 4rem;
-        }
-    }
-
-    /* Markdown Styling */
-    :global(.page-card h1) {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
-        color: white;
-        text-align: center;
-    }
-
-    :global(.page-card h2) {
-        font-size: 1.5rem;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: white;
-    }
-
-    :global(.page-card p) {
-        margin-bottom: 1rem;
-        color: #d1d5db;
-        line-height: 1.7;
-    }
-
-    :global(.page-card ul) {
-        margin-bottom: 1.5rem;
-        padding-left: 1.5rem;
-        color: #d1d5db;
-    }
-
-    :global(.page-card li) {
-        margin-bottom: 0.5rem;
-    }
-
-    :global(.page-card strong) {
-        color: white;
-    }
+  }
 </style>
